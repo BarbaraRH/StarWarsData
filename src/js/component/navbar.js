@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Context } from "../store/appContext";
+
 export class Navbar extends React.Component {
 	render() {
 		return (
@@ -14,16 +16,20 @@ export class Navbar extends React.Component {
 					</span>
 				</Link>
 				<span className="my-2 my-lg-0">
-					<button className="btn btn-outline-dark my-2 mr-2">
-						Characters <br />
-						<i className="fas fa-users" />
-					</button>
-					<button className="btn btn-outline-dark my-2 mr-2">
-						Vehicles <br /> <i className="fas fa-truck-pickup" />
-					</button>
-					<button className="btn btn-outline-dark my-2 mr-2">
-						Planets <br /> <i className="fas fa-globe-asia" />
-					</button>
+					<Context.Consumer>
+						{({ store, actions }) => {
+							return store.buttons.map((item, index) => {
+								return (
+									<Link key={index} to={"/list/" + item.name}>
+										<button className="btn btn-outline-dark my-2 mr-2">
+											{item.name} <br />
+											<i className={item.className} />
+										</button>
+									</Link>
+								);
+							});
+						}}
+					</Context.Consumer>
 				</span>
 			</nav>
 		);

@@ -1,6 +1,11 @@
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
+			buttons: [
+				{ name: "characters", className: "fas fa-users" },
+				{ name: "vehicles", className: "fas fa-truck-pickup" },
+				{ name: "planets", className: "fas fa-globe-asia" }
+			],
 			demo: [
 				{
 					title: "FIRST",

@@ -27,18 +27,21 @@ const injectContext = PassedComponent => {
 			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
 			 * you should do your ajax requests or fetch api requests here
 			 **/
-			fetch("https://swapi.co/api/people/?page=1")
-				.then(resp => resp.json())
-				.then(data => {
-					console.log(data);
-					this.setState({
-						store: { demo: data.results }
-					});
-				})
-				.then(() => {
-					console.log(this.state.store.demo);
-				})
-				.catch(error => console.log(error));
+			const fetching = [
+				{ url: "https://swapi.co/api/people/?page=1", storePlace: "characters" },
+				{ url: "https://swapi.co/api/vehicles/?page=1", storePlace: "vehicles" },
+				{ url: "https://swapi.co/api/planets/?page=1", storePlace: "planets" }
+			];
+			for (let i in fetching) {
+				fetch(fetching[i].url)
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data);
+						this.setState({ store: { ...this.state.store, [fetching[i].storePlace]: data.results } });
+						console.log(this.state.store);
+					})
+					.catch(error => console.log(error));
+			}
 		}
 
 		render() {
