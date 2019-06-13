@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Route } from "react-router-dom";
-import { Detail } from "./detail";
 
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
@@ -10,7 +8,7 @@ import PropTypes from "prop-types";
 export class CardList extends React.Component {
 	render() {
 		return (
-			<div className="container pt-3">
+			<div className="container pt-3 pb-5 mb-5">
 				<div className="row">
 					<Context.Consumer>
 						{({ store, actions }) => {
@@ -29,6 +27,17 @@ export class CardList extends React.Component {
 													With supporting text below as a natural lead-in to additional
 													content.
 												</p>
+												<div className="form-check">
+													<input
+														type="checkbox"
+														className="form-check-input"
+														id="exampleCheck1"
+														onChange={() => actions.favCard(property, index)}
+													/>
+													<label className="form-check-label" htmlFor="exampleCheck1">
+														Check me out
+													</label>
+												</div>
 												<Link
 													key={index}
 													to={"/" + property + "/" + index}
@@ -41,6 +50,7 @@ export class CardList extends React.Component {
 									);
 								});
 							}
+							console.log(store);
 						}}
 					</Context.Consumer>
 				</div>

@@ -6,6 +6,7 @@ const getState = ({ getStore, setStore }) => {
 				{ name: "vehicles", className: "fas fa-truck-pickup" },
 				{ name: "planets", className: "fas fa-globe-asia" }
 			],
+			favorites: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -20,6 +21,12 @@ const getState = ({ getStore, setStore }) => {
 			]
 		},
 		actions: {
+			favCard: (property, id) => {
+				const store = getStore();
+				store.favorites.push(store[property][id]);
+				store[property][id].category = property;
+				setStore({ store: store });
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

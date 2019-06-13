@@ -8,7 +8,7 @@ import { Detail } from "./views/detail";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
-import { Favorites } from "./component/favorites";
+import { Footer } from "./component/footer";
 
 //create your first component
 export class Layout extends React.Component {
@@ -23,18 +23,14 @@ export class Layout extends React.Component {
 					<ScrollToTop>
 						<Navbar />
 						<div className="row">
-							<div className="col-9">
-								<Switch>
-									<Route exact path="/" component={CardList} />
-									<Route path="/:category/:theid" component={Detail} />
-									<Route path="/:category" component={CardList} />
-									<Route render={() => <h1>Not found!</h1>} />
-								</Switch>
-							</div>
-							<div className="col-3 p-3 bg-light">
-								<Favorites />
-							</div>
+							<Switch>
+								<Route exact path="/" component={CardList} />
+								<Route path="/:category/:theid" component={Detail} />
+								<Route path="/:category" component={CardList} />
+								<Route render={() => <h1>Not found!</h1>} />
+							</Switch>
 						</div>
+						<Footer />
 					</ScrollToTop>
 				</BrowserRouter>
 			</div>
