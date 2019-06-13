@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { Detail } from "./detail";
 
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
@@ -13,7 +15,8 @@ export class CardList extends React.Component {
 					<Context.Consumer>
 						{({ store, actions }) => {
 							console.log(store);
-							let property = this.props.match.params.theid;
+							let property = this.props.match.params.category;
+							console.log(this.props.match);
 							console.log(property);
 							console.log(store[property]);
 							if (property in store) {
@@ -26,9 +29,13 @@ export class CardList extends React.Component {
 													With supporting text below as a natural lead-in to additional
 													content.
 												</p>
-												<a href="#" className="btn btn-primary">
-													Go somewhere
-												</a>
+												<Link
+													key={index}
+													to={"/" + property + "/" + index}
+													className="btn btn-primary btn-lg"
+													role="button">
+													Learn more
+												</Link>
 											</div>
 										</div>
 									);

@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { CardList } from "./views/cardList";
+import { Detail } from "./views/detail";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -24,7 +26,8 @@ export class Layout extends React.Component {
 							<div className="col-9">
 								<Switch>
 									<Route exact path="/" component={CardList} />
-									<Route path="/list/:theid" component={CardList} />
+									<Route path="/:category/:theid" component={Detail} />
+									<Route path="/:category" component={CardList} />
 									<Route render={() => <h1>Not found!</h1>} />
 								</Switch>
 							</div>

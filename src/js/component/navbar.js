@@ -20,7 +20,7 @@ export class Navbar extends React.Component {
 						{({ store, actions }) => {
 							return store.buttons.map((item, index) => {
 								return (
-									<Link key={index} to={"/list/" + item.name}>
+									<Link key={index} to={"/" + item.name}>
 										<button className="btn btn-outline-dark my-2 mr-2">
 											{item.name} <br />
 											<i className={item.className} />
