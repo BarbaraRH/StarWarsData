@@ -28,16 +28,22 @@ const injectContext = PassedComponent => {
 			 * you should do your ajax requests or fetch api requests here
 			 **/
 			const fetching = [
-				{ url: "https://swapi.co/api/people/?page=1", storePlace: "characters" },
-				{ url: "https://swapi.co/api/vehicles/?page=1", storePlace: "vehicles" },
-				{ url: "https://swapi.co/api/planets/?page=1", storePlace: "planets" }
+				{ url: "https://swapi.co/api/people/?page=1", storePlace: "characters", nextUrl: "nextCharacters" },
+				{ url: "https://swapi.co/api/vehicles/?page=1", storePlace: "vehicles", nextUrl: "nextVehicles" },
+				{ url: "https://swapi.co/api/planets/?page=1", storePlace: "planets", nextUrl: "nextPlanets" }
 			];
 			for (let i in fetching) {
 				fetch(fetching[i].url)
 					.then(resp => resp.json())
 					.then(data => {
 						console.log(data);
-						this.setState({ store: { ...this.state.store, [fetching[i].storePlace]: data.results } });
+						this.setState({
+							store: {
+								...this.state.store,
+								[fetching[i].storePlace]: data.results,
+								[fetching[i].nextUrl]: data.next
+							}
+						});
 						console.log(this.state.store);
 					})
 					.catch(error => console.log(error));

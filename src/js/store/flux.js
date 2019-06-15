@@ -21,6 +21,27 @@ const getState = ({ getStore, setStore }) => {
 			]
 		},
 		actions: {
+			showMore: (category, nextCategory) => {
+				const store = getStore();
+				fetch(store[nextCategory])
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data);
+						console.log(category);
+						console.log(data.results);
+						let concats = store[category].concat(data.results);
+						store[category] = concats;
+						if ("next" in data) {
+							store[nextCategory] = data.next;
+						} else {
+							store[nextCategory] = "";
+						}
+						console.log(store[category]);
+						setStore({ store: store });
+						console.log(store);
+					})
+					.catch(error => console.log(error));
+			},
 			favCard: (property, id) => {
 				const store = getStore();
 				store.favorites.push(store[property][id]);

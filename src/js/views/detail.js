@@ -11,9 +11,6 @@ export class Detail extends React.Component {
 				{({ store, actions }) => {
 					let property = this.props.match.params.category;
 					let index = this.props.match.params.theid;
-					console.log(this.props.match);
-					console.log(property);
-					console.log(index);
 					if (property in store) {
 						return (
 							<div className="jumbotron">

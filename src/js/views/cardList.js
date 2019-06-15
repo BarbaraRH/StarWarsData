@@ -12,11 +12,7 @@ export class CardList extends React.Component {
 				<div className="row">
 					<Context.Consumer>
 						{({ store, actions }) => {
-							console.log(store);
 							let property = this.props.match.params.category;
-							console.log(this.props.match);
-							console.log(property);
-							console.log(store[property]);
 							if (property in store) {
 								return store[property].map((item, index) => {
 									return (
@@ -50,7 +46,36 @@ export class CardList extends React.Component {
 									);
 								});
 							}
-							console.log(store);
+						}}
+					</Context.Consumer>
+					<Context.Consumer>
+						{({ store, actions }) => {
+							let property = this.props.match.params.category;
+							let propertyNext;
+							if (property === "characters") {
+								propertyNext = "nextCharacters";
+							} else if (property === "vehicles") {
+								propertyNext = "nextVehicles";
+							} else if (property === "planets") {
+								propertyNext = "nextPlanets";
+							}
+							if (
+								property in store &&
+								propertyNext in store &&
+								store[propertyNext] !== null &&
+								store[propertyNext].length > 0
+							) {
+								return (
+									<div className="text-center p-2">
+										<button
+											onClick={() => actions.showMore(property, propertyNext)}
+											className="btn btn-primary btn-lg m-5"
+											role="button">
+											Show more
+										</button>
+									</div>
+								);
+							}
 						}}
 					</Context.Consumer>
 				</div>
