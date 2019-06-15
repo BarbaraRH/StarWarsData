@@ -36,7 +36,6 @@ const injectContext = PassedComponent => {
 				fetch(fetching[i].url)
 					.then(resp => resp.json())
 					.then(data => {
-						console.log(data);
 						this.setState({
 							store: {
 								...this.state.store,

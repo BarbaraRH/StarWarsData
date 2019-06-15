@@ -10,7 +10,7 @@ export const Footer = () => (
 				if (store.favorites.length > 0) {
 					return store.favorites.map((item, index) => {
 						return (
-							<Link key={index} to={"/" + item.category + "/" + index}>
+							<Link key={index} to={"/" + item.category + "/" + item.position}>
 								<button type="button" className="btn btn-outline-primary">
 									{item.name}
 								</button>

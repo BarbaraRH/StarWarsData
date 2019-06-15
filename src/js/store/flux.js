@@ -26,9 +26,6 @@ const getState = ({ getStore, setStore }) => {
 				fetch(store[nextCategory])
 					.then(resp => resp.json())
 					.then(data => {
-						console.log(data);
-						console.log(category);
-						console.log(data.results);
 						let concats = store[category].concat(data.results);
 						store[category] = concats;
 						if ("next" in data) {
@@ -36,9 +33,7 @@ const getState = ({ getStore, setStore }) => {
 						} else {
 							store[nextCategory] = "";
 						}
-						console.log(store[category]);
 						setStore({ store: store });
-						console.log(store);
 					})
 					.catch(error => console.log(error));
 			},
@@ -46,6 +41,7 @@ const getState = ({ getStore, setStore }) => {
 				const store = getStore();
 				store.favorites.push(store[property][id]);
 				store[property][id].category = property;
+				store[property][id].position = id;
 				setStore({ store: store });
 			},
 			changeColor: (index, color) => {
