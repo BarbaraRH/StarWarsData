@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
-/* store.demo[this.props.match.params.theid].title */
 export class CardList extends React.Component {
 	render() {
 		return (
@@ -28,13 +27,13 @@ export class CardList extends React.Component {
 														onChange={() => actions.favCard(property, index)}
 													/>
 													<label className="form-check-label" htmlFor="exampleCheck1">
-														Check me out
+														Check me out later
 													</label>
 												</div>
 												<Link
 													key={index}
 													to={"/" + property + "/" + index}
-													className="btn btn-secondary btn-lg"
+													className="btn btn-secondary btn-lg mt-2"
 													role="button">
 													Learn more
 												</Link>
