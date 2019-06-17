@@ -8,21 +8,18 @@ import PropTypes from "prop-types";
 export class CardList extends React.Component {
 	render() {
 		return (
-			<div className="container pt-3 pb-5 mb-5">
-				<div className="row">
+			<div className="pt-3 pb-5 mb-5">
+				<div className="row ml-5">
 					<Context.Consumer>
 						{({ store, actions }) => {
 							let property = this.props.match.params.category;
 							if (property in store) {
 								return store[property].map((item, index) => {
 									return (
-										<div key={index} className="card" style={{ width: "18rem" }}>
+										<div key={index} className="card m-2" style={{ width: "18rem" }}>
 											<div className="card-body">
 												<h5 className="card-title">{item.name}</h5>
-												<p className="card-text">
-													With supporting text below as a natural lead-in to additional
-													content.
-												</p>
+												<p className="card-text" />
 												<div className="form-check">
 													<input
 														type="checkbox"
@@ -37,7 +34,7 @@ export class CardList extends React.Component {
 												<Link
 													key={index}
 													to={"/" + property + "/" + index}
-													className="btn btn-primary btn-lg"
+													className="btn btn-secondary btn-lg"
 													role="button">
 													Learn more
 												</Link>
@@ -48,37 +45,37 @@ export class CardList extends React.Component {
 							}
 						}}
 					</Context.Consumer>
-					<Context.Consumer>
-						{({ store, actions }) => {
-							let property = this.props.match.params.category;
-							let propertyNext;
-							if (property === "characters") {
-								propertyNext = "nextCharacters";
-							} else if (property === "vehicles") {
-								propertyNext = "nextVehicles";
-							} else if (property === "planets") {
-								propertyNext = "nextPlanets";
-							}
-							if (
-								property in store &&
-								propertyNext in store &&
-								store[propertyNext] !== null &&
-								store[propertyNext].length > 0
-							) {
-								return (
-									<div className="text-center p-2">
-										<button
-											onClick={() => actions.showMore(property, propertyNext)}
-											className="btn btn-primary btn-lg m-5"
-											role="button">
-											Show more
-										</button>
-									</div>
-								);
-							}
-						}}
-					</Context.Consumer>
 				</div>
+				<Context.Consumer>
+					{({ store, actions }) => {
+						let property = this.props.match.params.category;
+						let propertyNext;
+						if (property === "characters") {
+							propertyNext = "nextCharacters";
+						} else if (property === "vehicles") {
+							propertyNext = "nextVehicles";
+						} else if (property === "planets") {
+							propertyNext = "nextPlanets";
+						}
+						if (
+							property in store &&
+							propertyNext in store &&
+							store[propertyNext] !== null &&
+							store[propertyNext].length > 0
+						) {
+							return (
+								<div className="text-center p-2">
+									<button
+										onClick={() => actions.showMore(property, propertyNext)}
+										className="btn btn-dark btn-lg m-5"
+										role="button">
+										Show more
+									</button>
+								</div>
+							);
+						}
+					}}
+				</Context.Consumer>
 			</div>
 		);
 	}

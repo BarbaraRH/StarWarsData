@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { CardList } from "./views/cardList";
 import { Detail } from "./views/detail";
+import { Home } from "./views/home";
 
 import injectContext from "./store/appContext";
 
@@ -22,9 +23,9 @@ export class Layout extends React.Component {
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
 						<Navbar />
-						<div className="row">
+						<div>
 							<Switch>
-								<Route exact path="/" component={CardList} />
+								<Route exact path="/" component={Home} />
 								<Route path="/:category/:theid" component={Detail} />
 								<Route path="/:category" component={CardList} />
 								<Route render={() => <h1>Not found!</h1>} />

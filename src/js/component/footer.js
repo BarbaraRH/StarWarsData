@@ -11,7 +11,7 @@ export const Footer = () => (
 					return store.favorites.map((item, index) => {
 						return (
 							<Link key={index} to={"/" + item.category + "/" + item.position}>
-								<button type="button" className="btn btn-outline-primary">
+								<button type="button" className="btn btn-outline-dark ml-2 mt-1">
 									{item.name}
 								</button>
 							</Link>
