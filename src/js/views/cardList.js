@@ -12,6 +12,8 @@ export class CardList extends React.Component {
 					<Context.Consumer>
 						{({ store, actions }) => {
 							let property = this.props.match.params.category;
+							let off = "far fa-star";
+							let on = "fas fa-star";
 							if (property in store) {
 								return store[property].map((item, index) => {
 									return (
@@ -19,16 +21,12 @@ export class CardList extends React.Component {
 											<div className="card-body">
 												<h5 className="card-title">{item.name}</h5>
 												<p className="card-text" />
-												<div className="form-check">
-													<input
-														type="checkbox"
-														className="form-check-input"
-														id="exampleCheck1"
-														onChange={() => actions.favCard(property, index)}
-													/>
-													<label className="form-check-label" htmlFor="exampleCheck1">
-														Check me out later
-													</label>
+												<div>
+													<i
+														className={store[property][index].saved ? on : off}
+														onClick={() => actions.favCard(property, index)}
+													/>{" "}
+													Save
 												</div>
 												<Link
 													key={index}

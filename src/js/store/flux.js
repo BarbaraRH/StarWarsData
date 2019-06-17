@@ -42,6 +42,7 @@ const getState = ({ getStore, setStore }) => {
 				store.favorites.push(store[property][id]);
 				store[property][id].category = property;
 				store[property][id].position = id;
+				store[property][id].saved = true;
 				setStore({ store: store });
 			},
 			changeColor: (index, color) => {
